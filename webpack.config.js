@@ -1,4 +1,6 @@
 const path = require('path');
+const MinCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: "./src/index.js",
@@ -13,7 +15,7 @@ module.exports = {
         use: [
           // loaderは下から順番に使用される。順番間違えると動かない。
           {
-            loader: 'style-loader'
+            loader: MinCssExtractPlugin.loader,
           },
           {
             loader: "css-loader",
@@ -22,4 +24,10 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new MinCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+    }),
+  ],
 }
