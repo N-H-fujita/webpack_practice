@@ -25,15 +25,19 @@ module.exports = {
       },
       {
         test: /\.(png|jpg)/,
+        type: "asset/resource",
+        generator: {
+          filename: "images/[name][ext]",
+        },
         use: [
-          {
-            //loader: "url-loader",
-            loader: "file-loader",
-            options: {
-              esModule: false,
-              name: "images/[name].[ext]",
-            },
-          },
+          //{
+          //  //loader: "url-loader",
+          //  loader: "file-loader",
+          //  options: {
+          //    esModule: false,
+          //    name: "images/[name].[ext]",
+          //  },
+          //},
         ],
       },
     ],
