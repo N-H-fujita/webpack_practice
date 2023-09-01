@@ -4,6 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
+  devServer: {
+    static: path.resolve(__dirname, "src"),
+  },
   entry: "./src/javascripts/main.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
@@ -12,7 +15,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css/,
+        test: /\.(css|sass|scss)/,
         use: [
           // loaderは下から順番に使用される。順番間違えると動かない。
           {
@@ -20,6 +23,9 @@ module.exports = {
           },
           {
             loader: "css-loader",
+          },
+          {
+            loader: "sass-loader",
           },
         ],
       },
@@ -67,6 +73,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/templates/access.pug",
       filename: "access.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/templates/members/taro.pug",
+      filename: "members/taro.html",
     }),
     new CleanWebpackPlugin(),
   ],
