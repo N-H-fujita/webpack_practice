@@ -12,7 +12,7 @@ module.exports = {
   entry: "./src/javascripts/main.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: 'javascripts/main.js',
+    filename: 'javascripts/[name]-[contenthash].js',
   },
   module: {
     rules: [
@@ -62,7 +62,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg)/,
         type: "asset/resource",
         generator: {
-          filename: "images/[name][ext]",
+          filename: "images/[name]-[contenthash][ext]",
         },
         use: [
           //{
@@ -70,7 +70,7 @@ module.exports = {
           //  loader: "file-loader",
           //  options: {
           //    esModule: false,
-          //    name: "images/[name].[ext]",
+          //    name: "images/[name]-[hash].[ext]",
           //    publicPath: "/",
           //  },
           //},
@@ -103,7 +103,7 @@ module.exports = {
   },
   plugins: [
     new MinCssExtractPlugin({
-      filename: './stylesheets/main.css',
+      filename: './stylesheets/[name]-[contenthash].css',
     }),
     new HtmlWebpackPlugin({
       template: "./src/templates/index.pug",
