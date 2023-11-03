@@ -2,7 +2,6 @@ const path = require('path');
 const MinCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   devServer: {
@@ -42,15 +41,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.vue/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: "vue-loader",
-          },
-        ],
-      },
-      {
         test: /\.(css|sass|scss)/,
         use: [
           // loaderは下から順番に使用される。順番間違えると動かない。
@@ -81,6 +71,7 @@ module.exports = {
           //  options: {
           //    esModule: false,
           //    name: "images/[name].[ext]",
+          //    publicPath: "/",
           //  },
           //},
           {
@@ -127,6 +118,5 @@ module.exports = {
       filename: "members/taro.html",
     }),
     new CleanWebpackPlugin(),
-    new VueLoaderPlugin(),
   ],
 }
